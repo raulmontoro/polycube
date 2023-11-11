@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
 
-#include "CubeSet.hpp"
+#include "PolyCube.hpp"
 
-TEST(CubeSet_Translate, TranslateZero)
+TEST(PolyCube_Translate, TranslateZero)
 {
-    CubeSet::CubeList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
+    PolyCube::PointList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
 
-    CubeSet::translate(cubes, Coord(0, 0, 0));
+    PolyCube::translate(cubes, Coord(0, 0, 0));
 
     ASSERT_EQ(3, cubes.size());
     EXPECT_EQ(Coord(1, 1, 1), cubes[0]);
@@ -14,11 +14,11 @@ TEST(CubeSet_Translate, TranslateZero)
     EXPECT_EQ(Coord(-8, 10, 5), cubes[2]);
 }
 
-TEST(CubeSet_Translate, TranslateUniformNegative)
+TEST(PolyCube_Translate, TranslateUniformNegative)
 {
-    CubeSet::CubeList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
+    PolyCube::PointList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
 
-    CubeSet::translate(cubes, Coord(-5, -5, -5));
+    PolyCube::translate(cubes, Coord(-5, -5, -5));
 
     ASSERT_EQ(3, cubes.size());
     EXPECT_EQ(Coord(-4, -4, -4), cubes[0]);
@@ -26,11 +26,11 @@ TEST(CubeSet_Translate, TranslateUniformNegative)
     EXPECT_EQ(Coord(-13, 5, 0), cubes[2]);
 }
 
-TEST(CubeSet_Translate, TranslateUniform)
+TEST(PolyCube_Translate, TranslateUniform)
 {
-    CubeSet::CubeList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
+    PolyCube::PointList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
 
-    CubeSet::translate(cubes, Coord(5, 5, 5));
+    PolyCube::translate(cubes, Coord(5, 5, 5));
 
     ASSERT_EQ(3, cubes.size());
     EXPECT_EQ(Coord(6, 6, 6), cubes[0]);
@@ -38,11 +38,11 @@ TEST(CubeSet_Translate, TranslateUniform)
     EXPECT_EQ(Coord(-3, 15, 10), cubes[2]);
 }
 
-TEST(CubeSet_Translate, TranslateUnequalNegative)
+TEST(PolyCube_Translate, TranslateUnequalNegative)
 {
-    CubeSet::CubeList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
+    PolyCube::PointList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
 
-    CubeSet::translate(cubes, Coord(-3, -8, -100));
+    PolyCube::translate(cubes, Coord(-3, -8, -100));
 
     ASSERT_EQ(3, cubes.size());
     EXPECT_EQ(Coord(-2, -7, -99), cubes[0]);
@@ -50,11 +50,11 @@ TEST(CubeSet_Translate, TranslateUnequalNegative)
     EXPECT_EQ(Coord(-11, 2, -95), cubes[2]);
 }
 
-TEST(CubeSet_Translate, TranslateUnequal)
+TEST(PolyCube_Translate, TranslateUnequal)
 {
-    CubeSet::CubeList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
+    PolyCube::PointList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
 
-    CubeSet::translate(cubes, Coord(3, 8, 100));
+    PolyCube::translate(cubes, Coord(3, 8, 100));
 
     ASSERT_EQ(3, cubes.size());
     EXPECT_EQ(Coord(4, 9, 101), cubes[0]);
@@ -62,11 +62,11 @@ TEST(CubeSet_Translate, TranslateUnequal)
     EXPECT_EQ(Coord(-5, 18, 105), cubes[2]);
 }
 
-TEST(CubeSet_Translate, TranslateMixedNegPos)
+TEST(PolyCube_Translate, TranslateMixedNegPos)
 {
-    CubeSet::CubeList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
+    PolyCube::PointList cubes{{1, 1, 1}, {2, 2, 2}, {-8, 10, 5}};
 
-    CubeSet::translate(cubes, Coord(4, -8, 30));
+    PolyCube::translate(cubes, Coord(4, -8, 30));
 
     ASSERT_EQ(3, cubes.size());
     EXPECT_EQ(Coord(5, -7, 31), cubes[0]);

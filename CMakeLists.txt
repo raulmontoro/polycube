@@ -8,19 +8,19 @@ set (TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test)
 set (HEADERS 
     ${INC_DIR}/Helpers.hpp
     ${INC_DIR}/Coord.hpp
-    ${INC_DIR}/CubeSet.hpp
+    ${INC_DIR}/PolyCube.hpp
 )
 set (SRCS 
-    ${SRC_DIR}/CubeSet.cpp
+    ${SRC_DIR}/PolyCube.cpp
 )
 set(TESTS
     ${TEST_DIR}/helpers.cpp
     ${TEST_DIR}/coord.cpp
-    ${TEST_DIR}/cubeset/compute_center.cpp
-    ${TEST_DIR}/cubeset/hash.cpp
-    ${TEST_DIR}/cubeset/sort.cpp
-    ${TEST_DIR}/cubeset/translate.cpp
-    ${TEST_DIR}/cubeset/mirror.cpp
+    ${TEST_DIR}/polycube/compute_center.cpp
+    ${TEST_DIR}/polycube/hash.cpp
+    ${TEST_DIR}/polycube/sort.cpp
+    ${TEST_DIR}/polycube/translate.cpp
+    ${TEST_DIR}/polycube/mirror.cpp
 )
 
 add_executable(cubes ${SRC_DIR}/main.cpp ${SRCS} ${HEADERS})

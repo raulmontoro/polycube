@@ -1,12 +1,12 @@
-#include "CubeSet.hpp"
+#include "PolyCube.hpp"
 
 #include <tuple>
 #include <algorithm>
 
 #include "Helpers.hpp"
-namespace CubeSet
+namespace PolyCube
 {
-    std::size_t compute_hash(const CubeSet::CubeList &cubes)
+    std::size_t compute_hash(const PolyCube::PointList &cubes)
     {
         if (cubes.size() == 0)
         {
@@ -20,7 +20,7 @@ namespace CubeSet
         return hash;
     }
 
-    center_info compute_center(const CubeSet::CubeList &coords)
+    center_info compute_center(const PolyCube::PointList &coords)
     {
         int16_t total_x = 0;
         int16_t total_y = 0;
@@ -55,7 +55,7 @@ namespace CubeSet
         return center_info(center, min, max);
     }
 
-    void sort(CubeSet::CubeList &cubes, const Coord &center)
+    void sort(PolyCube::PointList &cubes, const Coord &center)
     {
         std::sort(
             cubes.begin(),
@@ -66,7 +66,7 @@ namespace CubeSet
             });
     }
 
-    void translate(CubeList &cubes, const Coord &center)
+    void translate(PointList &cubes, const Coord &center)
     {
         for (auto &val : cubes)
         {
@@ -74,19 +74,19 @@ namespace CubeSet
         }
     }
 
-    void rotate(CubeSet::CubeList &set, const Coord &center, const Coord &furthestPoint)
+    void rotate_up(PolyCube::PointList &set, const Coord &center)
     {
     }
 
     namespace helpers
     {
-        void mirror(CubeList &cubes, Axis mirrorAxis, Coord center)
+        void mirror(PointList &cubes, Axis mirrorAxis, Coord center)
         {
             for (auto &cube : cubes)
             {
                 if (((int)mirrorAxis & (int)Axis::X) == (int)Axis::X)
                 {
-                     cube.x = cube.x - ((cube.x - center.x) * 2);
+                    cube.x = cube.x - ((cube.x - center.x) * 2);
                 }
                 if (((int)mirrorAxis & (int)Axis::Y) == (int)Axis::Y)
                 {
@@ -99,4 +99,4 @@ namespace CubeSet
             }
         }
     } // namespace helpers
-} // namespace CubeSet
+} // namespace PolyCube
