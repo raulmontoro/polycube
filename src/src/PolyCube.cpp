@@ -35,15 +35,15 @@ namespace PolyCube
 
         for (const auto &val : coords)
         {
-            total_x += val.x;
-            total_y += val.y;
-            total_z += val.z;
-            min_x = std::min(min_x, val.x);
-            min_y = std::min(min_y, val.y);
-            min_z = std::min(min_z, val.z);
-            max_x = std::max(max_x, val.x);
-            max_y = std::max(max_y, val.y);
-            max_z = std::max(max_z, val.z);
+            total_x += val.getX();
+            total_y += val.getY();
+            total_z += val.getZ();
+            min_x = std::min(min_x, val.getX());
+            min_y = std::min(min_y, val.getY());
+            min_z = std::min(min_z, val.getZ());
+            max_x = std::max(max_x, val.getX());
+            max_y = std::max(max_y, val.getY());
+            max_z = std::max(max_z, val.getZ());
         }
         size_t total = coords.size();
         total_x = ::helpers::idiv_roundup(total_x, total);
@@ -86,15 +86,15 @@ namespace PolyCube
             {
                 if (((int)mirrorAxis & (int)Axis::X) == (int)Axis::X)
                 {
-                    cube.x = cube.x - ((cube.x - center.x) * 2);
+                    cube.setX(cube.getX() - ((cube.getX() - center.getX()) * 2));
                 }
                 if (((int)mirrorAxis & (int)Axis::Y) == (int)Axis::Y)
                 {
-                    cube.y = cube.y - ((cube.y - center.y) * 2);
+                    cube.setY(cube.getY() - ((cube.getY() - center.getY()) * 2));
                 }
                 if (((int)mirrorAxis & (int)Axis::Z) == (int)Axis::Z)
                 {
-                    cube.z = cube.z - ((cube.z - center.z) * 2);
+                    cube.setZ(cube.getZ() - ((cube.getZ() - center.getZ()) * 2));
                 }
             }
         }

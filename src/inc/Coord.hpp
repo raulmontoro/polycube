@@ -4,14 +4,15 @@
 #include <cstdint>
 #include <cmath>
 #include <functional>
-#include <iostream>
 
 struct Coord
 {
+private:
     int8_t x;
     int8_t y;
     int8_t z;
 
+public:
     constexpr Coord(int8_t x, int8_t y, int8_t z) : x(x), y(y), z(z)
     {
     }
@@ -35,46 +36,74 @@ struct Coord
         return std::sqrt(x2 + y2 + z2);
     };
 
-    bool operator==(const Coord& a) const
+    bool operator==(const Coord &a) const
     {
         return (a.x == x) && (a.y == y) && (a.z == z);
     }
-    
-    bool operator!=(const Coord& a) const 
+
+    bool operator!=(const Coord &a) const
     {
         return !(a == *this);
     }
 
-    Coord& operator-=(const Coord& a)
+    Coord &operator-=(const Coord &a)
     {
         x -= a.x;
         y -= a.y;
         z -= a.z;
         return *this;
     }
-    Coord& operator+=(const Coord& a)
+    Coord &operator+=(const Coord &a)
     {
         x += a.x;
         y += a.y;
         z += a.z;
         return *this;
     }
-    
-    Coord operator-(const Coord& a)
+
+    Coord operator-(const Coord &a)
     {
         return Coord(x - a.x, y - a.y, z - a.z);
     };
 
-    Coord operator+(const Coord& a)
+    Coord operator+(const Coord &a)
     {
         return Coord(x + a.x, y + a.y, z + a.z);
     };
+
+    inline int8_t getX() const
+    {
+        return x;
+    }
+    
+    inline int8_t getY() const
+    {
+        return y;
+    }
+
+    inline int8_t getZ() const
+    {
+        return z;
+    }
+
+    inline void setX(int8_t value)
+    {
+        this->x = value;
+    }
+    inline void setY(int8_t value)
+    {
+        this->y = value;
+    }
+    inline void setZ(int8_t value)
+    {
+        this->z = value;
+    }
 };
 
-template<>
+template <>
 struct std::hash<Coord>
 {
-    std::size_t operator()(const Coord& coord) const
+    std::size_t operator()(const Coord &coord) const
     {
         return coord.compute_hash();
     };

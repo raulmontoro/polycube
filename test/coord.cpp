@@ -70,7 +70,7 @@ TEST(Coord, SubtractPoint)
     Coord a(40, 10, 10);
     Coord b(10, 1, 1);
     Coord result = a - b;
-    EXPECT_EQ(Coord(30, 9, 9), result) << std::to_string(result.x) << "," << std::to_string(result.y) << "," << std::to_string(result.z);
+    EXPECT_EQ(Coord(30, 9, 9), result) << std::to_string(result.getX()) << "," << std::to_string(result.getY()) << "," << std::to_string(result.getZ());
 }
 
 TEST(Coord, SubtractAssignPoint)
