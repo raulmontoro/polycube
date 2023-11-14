@@ -18,6 +18,15 @@ TEST(PolyCube_Hash, MultiCubeHash)
     EXPECT_EQ(hash, PolyCube::compute_hash(cubes));
 }
 
+TEST(PolyCube_Hash, MultiCubeHashFromStdStruct)
+{
+    PolyCube::PointList cubes{{1,1,1}, {-5, 8, 1}, {5, -9, 100}};
+
+    std::hash<PolyCube::PointList> hasher;
+
+    EXPECT_EQ(hasher(cubes), PolyCube::compute_hash(cubes));
+}
+
 TEST(PolyCube_Hash, MultiCubeHashDifferentOrder)
 {
     PolyCube::PointList cubes{{1,1,1}, {-5, 8, 1}, {5, -9, 100}};

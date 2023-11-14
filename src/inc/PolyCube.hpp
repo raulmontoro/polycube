@@ -2,7 +2,9 @@
 #ifndef POLYCUBES_POLYCUBE_HPP
 #define POLYCUBES_POLYCUBE_HPP
 #include <vector>
+#include <functional>
 #include "Coord.hpp"
+#include "Helpers.hpp"
 
 namespace PolyCube
 {
@@ -39,5 +41,14 @@ namespace PolyCube
         void mirror(PointList &cubes, Axis mirrorAxis, Coord center = Coord(0, 0, 0));
     }
 } // namespace PolyCube
+
+template <>
+struct std::hash<PolyCube::PointList>
+{
+    std::size_t operator()(const PolyCube::PointList &other) const
+    {
+        return PolyCube::compute_hash(other);
+    }
+};
 
 #endif // POLYCUBES_POLYCUBE_HPP
