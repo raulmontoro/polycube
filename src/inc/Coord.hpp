@@ -5,6 +5,10 @@
 #include <cmath>
 #include <functional>
 
+#ifndef POLYCUBES_COORD_ENABLE_MULTI_HASH
+#define POLYCUBES_COORD_ENABLE_MULTI_HASH 1
+#endif // POLYCUBES_COORD_ENABLE_MULTI_HASH
+
 struct Coord
 {
 private:
@@ -75,7 +79,7 @@ public:
     {
         return x;
     }
-    
+
     inline int8_t getY() const
     {
         return y;
@@ -107,6 +111,21 @@ struct std::hash<Coord>
     {
         return coord.compute_hash();
     };
+
+#if defined(POLYCUBES_COORD_ENABLE_MULTI_HASH) && POLYCUBES_COORD_ENABLE_MULTI_HASH == 1
+    std::size_t operator()(const Coord &a, const Coord &b) const
+    {
+        static_assert(sizeof(std::size_t) >= (sizeof(uint32_t) * 2));
+
+        uint32_t hash_a = a.compute_hash();
+        uint32_t hash_b = b.compute_hash();
+        if (hash_a > hash_b)
+        {
+            std::swap(hash_a, hash_b);
+        }
+        return (hash_a) | ((std::size_t)hash_b << 32);
+    }
+#endif // defined(POLYCUBES_COORD_ENABLE_MULTI_HASH) && POLYCUBES_COORD_ENABLE_MULTI_HASH == 1
 };
 
 #endif // POLYCUBES_COORD_HPP

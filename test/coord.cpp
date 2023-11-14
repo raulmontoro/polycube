@@ -65,6 +65,17 @@ TEST(Coord, ComputeHashUsingStdHashStruc)
     EXPECT_EQ(hasher(a), a.compute_hash());
 }
 
+TEST(Coord, ComputeHashOfTwoCoordsCombined)
+{
+    Coord a(55, 20, 10);
+    Coord b(-10, 5, -33);
+    std::hash<Coord> hasher;
+    EXPECT_NE(hasher(a), hasher(b));
+    EXPECT_NE(hasher(a), hasher(a, b));
+    EXPECT_NE(hasher(b), hasher(a, b));
+    EXPECT_EQ(hasher(b, a), hasher(a, b));
+}
+
 TEST(Coord, SubtractPoint)
 {
     Coord a(40, 10, 10);
