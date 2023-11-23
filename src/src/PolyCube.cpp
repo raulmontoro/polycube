@@ -74,6 +74,15 @@ namespace PolyCube
         }
     }
 
+
+    center_info process_cube(PointList &cube)
+    {
+        center_info center = compute_center(cube);
+        sort(cube, center.center);
+        translate(cube, center.center);
+        return center;
+    }
+
     void rotate_up(PolyCube::PointList &set, const Coord &center)
     {
     }

@@ -10,14 +10,17 @@ set (HEADERS
     ${INC_DIR}/Coord.hpp
     ${INC_DIR}/PolyCube.hpp
     ${INC_DIR}/HashedList.hpp
+    ${INC_DIR}/CubeSet.hpp
 )
 set (SRCS 
     ${SRC_DIR}/PolyCube.cpp
+    ${SRC_DIR}/CubeSet.cpp
 )
 set(TESTS
     ${TEST_DIR}/helpers.cpp
     ${TEST_DIR}/coord.cpp
     ${TEST_DIR}/hashedlist.cpp
+    ${TEST_DIR}/cubeset.cpp
     ${TEST_DIR}/polycube/compute_center.cpp
     ${TEST_DIR}/polycube/hash.cpp
     ${TEST_DIR}/polycube/sort.cpp

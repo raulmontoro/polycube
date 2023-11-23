@@ -29,6 +29,8 @@ namespace PolyCube
 
     std::size_t compute_hash(const PointList &cubes);
 
+    center_info process_cube(PointList &cube);
+
     namespace helpers
     {
         enum class Axis : uint8_t
