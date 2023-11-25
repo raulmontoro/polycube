@@ -11,6 +11,7 @@ set (HEADERS
     ${INC_DIR}/PolyCube.hpp
     ${INC_DIR}/HashedList.hpp
     ${INC_DIR}/CubeSet.hpp
+    ${INC_DIR}/CubeSpace.hpp
 )
 set (SRCS 
     ${SRC_DIR}/PolyCube.cpp
@@ -21,6 +22,7 @@ set(TESTS
     ${TEST_DIR}/coord.cpp
     ${TEST_DIR}/hashedlist.cpp
     ${TEST_DIR}/cubeset.cpp
+    ${TEST_DIR}/cubespace.cpp
     ${TEST_DIR}/polycube/compute_center.cpp
     ${TEST_DIR}/polycube/hash.cpp
     ${TEST_DIR}/polycube/sort.cpp
@@ -46,3 +48,5 @@ add_executable(tests ${TESTS} ${SRCS} ${HEADERS})
 target_include_directories(tests PUBLIC ${INC_DIR} ${TEST_DIR})
 
 target_link_libraries(tests PRIVATE gtest_main)
+
+target_compile_definitions(tests PRIVATE POLYCUBES_SAFTEY_TESTS=1)
