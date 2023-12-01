@@ -7,11 +7,11 @@
 #include <initializer_list>
 #include <type_traits>
 
-template <typename T>
+template <typename T, typename TMapType = std::unordered_map<std::size_t, T>>
 class HashedList
 {
 private:
-    using map = std::unordered_map<std::size_t, T>;
+    using map = TMapType;
 
 public:
     using hasher = std::hash<typename std::remove_cv<T>::type>;

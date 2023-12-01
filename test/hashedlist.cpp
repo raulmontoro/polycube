@@ -79,6 +79,7 @@ TEST(HashedList, SpeedBenchmark)
 {
     using namespace std::chrono;
     HashedList<int> custom_map;
+    HashedList<int, std::unordered_multimap<std::size_t, int>> custom_map_multi;
     std::unordered_map<std::size_t, int> default_map;
 
     constexpr long kItemCount =  1L * 1000L * 1000L;
@@ -86,6 +87,7 @@ TEST(HashedList, SpeedBenchmark)
     for (long i = 0; i < kItemCount; i++)
     {
         custom_map.add(i);
+        custom_map_multi.add(i);
         default_map.emplace(std::make_pair(i, i));
         if (i % kReportEvery == 0)
         {
@@ -118,6 +120,19 @@ TEST(HashedList, SpeedBenchmark)
     auto custom_map_end = high_resolution_clock::now();
     std::cout << "Count: " << count << std::endl;
 
+    count = 0;
+
+    auto custom_map_multi_start = high_resolution_clock::now();
+    loop_system(
+        auto result = custom_map_multi.find(i + j + k);
+        volatile int b = result->second;
+        b++;
+        count += b;
+    );
+    auto custom_map_multi_end = high_resolution_clock::now();
+    std::cout << "Count: " << count << std::endl;
+
+
     auto default_map_start = high_resolution_clock::now();
     loop_system(
                 volatile int b = default_map.find(i + j + k)->second;
@@ -129,9 +144,11 @@ TEST(HashedList, SpeedBenchmark)
     std::cout << "Count: " << count << std::endl;
 
     auto custom_time = duration_cast<milliseconds>(custom_map_end - custom_map_start);
+    auto custom_time_multi = duration_cast<milliseconds>(custom_map_multi_end - custom_map_multi_start);
     auto default_map_time = duration_cast<milliseconds>(default_map_end - default_map_start);
 
     std::cout << "Custom time:         " << custom_time.count() << std::endl;
+    std::cout << "Custom time multi:   " << custom_time_multi.count() << std::endl;
     std::cout << "Default map time:    " << default_map_time.count() << std::endl;
 }
 
