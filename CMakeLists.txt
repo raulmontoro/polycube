@@ -23,6 +23,7 @@ set(TESTS
     ${TEST_DIR}/hashedlist.cpp
     ${TEST_DIR}/cubeset.cpp
     ${TEST_DIR}/cubespace.cpp
+    ${TEST_DIR}/polycube/in_list.cpp
     ${TEST_DIR}/polycube/compute_center.cpp
     ${TEST_DIR}/polycube/hash.cpp
     ${TEST_DIR}/polycube/sort.cpp
@@ -50,3 +51,4 @@ target_include_directories(tests PUBLIC ${INC_DIR} ${TEST_DIR})
 target_link_libraries(tests PRIVATE gtest_main)
 
 target_compile_definitions(tests PRIVATE POLYCUBES_SAFTEY_TESTS=1)
+target_compile_definitions(tests PRIVATE POLYCUBES_INCLUDE_TIME_TESTS=0)

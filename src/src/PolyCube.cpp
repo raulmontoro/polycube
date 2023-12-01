@@ -74,7 +74,6 @@ namespace PolyCube
         }
     }
 
-
     center_info process_cube(PointList &cube)
     {
         center_info center = compute_center(cube);
@@ -85,6 +84,17 @@ namespace PolyCube
 
     void rotate_up(PolyCube::PointList &set, const Coord &center)
     {
+    }
+
+    bool point_in_list(const PointList& cube, const Coord& point)
+    {
+        for (const auto& cube_point : cube)
+        {
+            if (cube_point == point) {
+                return true;
+            }
+        }
+        return false;
     }
 
     namespace helpers

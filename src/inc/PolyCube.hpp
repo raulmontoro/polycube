@@ -31,6 +31,8 @@ namespace PolyCube
 
     center_info process_cube(PointList &cube);
 
+    bool point_in_list(const PointList& cube, const Coord& point);
+
     namespace helpers
     {
         enum class Axis : uint8_t

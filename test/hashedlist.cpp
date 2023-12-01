@@ -73,7 +73,7 @@ TEST(HashedList, InitializeOverSeveralBins)
     EXPECT_EQ(9, map.find(9)->second);
 }
 
-#ifdef POLYCUBES_INCLUDE_TIME_TESTS
+#if defined(POLYCUBES_INCLUDE_TIME_TESTS) && POLYCUBES_INCLUDE_TIME_TESTS==1
 
 TEST(HashedList, SpeedBenchmark)
 {
@@ -152,4 +152,4 @@ TEST(HashedList, SpeedBenchmark)
     std::cout << "Default map time:    " << default_map_time.count() << std::endl;
 }
 
-#endif // POLYCUBES_INCLUDE_TIME_TESTS
+#endif // defined(POLYCUBES_INCLUDE_TIME_TESTS) && POLYCUBES_INCLUDE_TIME_TESTS==1
