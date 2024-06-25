@@ -6,18 +6,19 @@
 #include "Coord.hpp"
 #include "Helpers.hpp"
 
-namespace PolyCube
-{
+
+
+
+
+namespace PolyCube {
     using PointList = std::vector<Coord>;
 
-    struct center_info
-    {
+    struct center_info {
         Coord center;
         Coord min;
         Coord max;
 
-        center_info(Coord center, Coord min, Coord max) : center(center), min(min), max(max)
-        {
+        center_info(Coord center, Coord min, Coord max) : center(center), min(min), max(max) {
         }
     };
 
@@ -33,10 +34,8 @@ namespace PolyCube
 
     bool point_in_list(const PointList& cube, const Coord& point);
 
-    namespace helpers
-    {
-        enum class Axis : uint8_t
-        {
+    namespace helpers {
+        enum class Axis : uint8_t {
             Y = 1,
             X = 2,
             Z = 4
@@ -46,11 +45,12 @@ namespace PolyCube
     }
 } // namespace PolyCube
 
+
+
+
 template <>
-struct std::hash<PolyCube::PointList>
-{
-    std::size_t operator()(const PolyCube::PointList &other) const
-    {
+struct std::hash<PolyCube::PointList> {
+    std::size_t operator()(const PolyCube::PointList &other) const {
         return PolyCube::compute_hash(other);
     }
 };
