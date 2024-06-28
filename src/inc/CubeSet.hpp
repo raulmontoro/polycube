@@ -8,28 +8,48 @@
 
 class SubCubeSet
 {
-public:
-    Coord furthest;
-    Coord center;
-
 private:
     HashedList<PolyCube::PointList> cubesets;
 
 public:
+    Coord furthest;
+    Coord center;
+
     SubCubeSet(Coord center, Coord furthest) : center(center), furthest(furthest)
     {
     }
 
-    bool contains_cube(const PolyCube::PointList &cube) const;
+
+    
+    /*  pre:
+        post:
+    */
     void add_cube(const PolyCube::PointList &cube);
 
+    /*  pre:
+        post:   return
+                cube present
+                    true
+                    false
+    */
+    bool contains_cube(const PolyCube::PointList &cube) const;
+    
+    /*  pre:
+        post:
+    */
     std::size_t compute_hash() const
     {
         return std::hash<Coord>()(center, furthest);
     };
-
-private:
 };
+
+
+
+
+
+
+
+
 
 class CubeSet
 {
@@ -44,6 +64,16 @@ public:
     bool contains_cube(const PolyCube::PointList &cube, Coord center, Coord furthest) const;
     void add_cube(const PolyCube::PointList &cube, Coord center, Coord furthest);
 };
+
+
+
+
+
+
+
+
+
+
 
 template <>
 struct std::hash<SubCubeSet>
