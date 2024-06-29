@@ -31,9 +31,14 @@ set(TESTS
     ${TEST_DIR}/polycube/mirror.cpp
 )
 
+# binary build (executable, contains main, main.cpp)
 add_executable(cubes ${SRC_DIR}/main.cpp ${SRCS} ${HEADERS})
-
 target_include_directories(cubes PUBLIC ${INC_DIR})
+
+
+
+
+
 
 include(FetchContent)
 FetchContent_Declare(
@@ -44,11 +49,19 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(tests ${TESTS} ${SRCS} ${HEADERS})
 
+
+
+
+
+# binary build (non executable)
+add_executable(tests ${TESTS} ${SRCS} ${HEADERS})
 target_include_directories(tests PUBLIC ${INC_DIR} ${TEST_DIR})
 
-target_link_libraries(tests PRIVATE gtest_main)
 
+
+
+
+target_link_libraries(tests PRIVATE gtest_main)
 target_compile_definitions(tests PRIVATE POLYCUBES_SAFTEY_TESTS=1)
 target_compile_definitions(tests PRIVATE POLYCUBES_INCLUDE_TIME_TESTS=0)
