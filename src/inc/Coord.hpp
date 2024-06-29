@@ -26,6 +26,13 @@ struct Coord
     
     // https://stackoverflow.com/questions/55051882/use-a-uint32-t-to-store-four-separate-uint8-t-values
     // https://stackoverflow.com/questions/3117822/generate-uint64-t-hash-key-with-several-uint32-t-integers
+
+    /*  two's complement 
+        https://en.wikipedia.org/wiki/Two%27s_complement
+        INT8_MIN
+        Two Complement          One Complement
+        1000 0000               -128
+    */
     constexpr uint32_t compute_hash() const
     {
         uint32_t _x = (uint32_t)((int)x + (-INT8_MIN));
